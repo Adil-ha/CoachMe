@@ -27,9 +27,6 @@ public class Order {
     @Column(name = "O_status", nullable = false)
     private OrderStatus status;
 
-    @Column(name = "O_tva", nullable = false)
-    private float tva;
-
     @ManyToOne
     @JoinColumn(name = "U_idUser", nullable = false)
     private User user;

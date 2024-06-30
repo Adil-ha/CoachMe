@@ -1,5 +1,6 @@
 package com.adil.server.dto;
 
+import com.adil.server.entity.enums.OrderStatus;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -11,8 +12,8 @@ import java.time.LocalDateTime;
 public class OrderDTO {
     private Long id;
     private LocalDateTime orderDate;
-    private String status;
-    private float tva;
+    private OrderStatus status;
     private Long userId;
-    private  float totalAmount;
+    private float tva;
+    private float totalAmount;
 }

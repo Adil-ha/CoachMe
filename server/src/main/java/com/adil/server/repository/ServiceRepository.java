@@ -1,0 +1,7 @@
+package com.adil.server.repository;
+
+import com.adil.server.entity.Service;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ServiceRepository extends JpaRepository<Service, Long> {
+}
