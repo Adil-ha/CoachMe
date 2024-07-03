@@ -20,7 +20,9 @@ public class CoachingRequestServiceImpl implements CoachingRequestService {
 
     @Override
     public CoachingRequestDTO createCoachingRequest(CoachingRequestDTO coachingRequestDTO) {
+        System.out.println("je suis la ");
         CoachingRequest coachingRequest = coachingRequestMapper.toEntity(coachingRequestDTO);
+        System.out.println("je suis encore la ");
         CoachingRequest savedCoachingRequest = coachingRequestRepository.save(coachingRequest);
         return coachingRequestMapper.toDto(savedCoachingRequest);
     }

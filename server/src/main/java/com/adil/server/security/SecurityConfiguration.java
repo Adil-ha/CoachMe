@@ -49,7 +49,7 @@ public class SecurityConfiguration {
                                         authorize
                                                 .requestMatchers(POST,"/register").permitAll()
                                                 .requestMatchers(POST,"/login").permitAll()
-                                                .requestMatchers(GET,"/books").permitAll()
+                                                .requestMatchers(GET,"/books/**").permitAll()
                                                 .requestMatchers(GET,"/services").permitAll()
                                                 .anyRequest().authenticated()
                         )

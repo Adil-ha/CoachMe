@@ -1,0 +1,29 @@
+.firstSection {
+  background-image: url('/homePage.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; /* Ajouté pour aligner les éléments en colonne */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.headline {
+  color: yellow;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: "Syne", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 18rem; /* Ajouté pour espacer la ligne du bas */
+}
+
+.subtitle {
+  color: white; /* Choisissez la couleur appropriée pour le texte en bas */
+  font-size: 1.5rem;
+  font-family: "Syne", sans-serif;
+  font-weight: 400;
+}

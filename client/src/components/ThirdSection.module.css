@@ -1,0 +1,31 @@
+.thirdSection {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .slide {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 10px;
+  }
+  
+  h2 {
+    margin-bottom: 2rem;
+    font-family: "Syne", sans-serif;
+    font-weight: 700;
+  }
+  
+  h3 {
+    font-family: "Syne", sans-serif;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  p {
+    font-family: "Syne", sans-serif;
+    font-weight: 400;
+    color: #555;
+  }
+  

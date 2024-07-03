@@ -3,6 +3,7 @@ package com.adil.server.controller;
 import com.adil.server.dto.BookDTO;
 import com.adil.server.service.BookService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class BookController {
     @PostMapping
     public ResponseEntity<BookDTO> createBook(@RequestBody BookDTO bookDTO) {
         BookDTO createdBook = bookService.createBook(bookDTO);
-        return ResponseEntity.ok(createdBook);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdBook);
     }
 
     @GetMapping("/{id}")

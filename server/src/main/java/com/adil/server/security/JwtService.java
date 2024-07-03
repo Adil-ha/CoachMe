@@ -135,7 +135,7 @@ public class JwtService {
         this.jwtRepository.save(jwt);
     }
 
-    @Scheduled(cron = "0 */1 * * * *")
+    @Scheduled(cron = "0 */3 * * * *")
 //    @Scheduled(cron = "@daily")
     public void removeUselessJwt(){
         log.info("Suppression des tokens {}", Instant.now());

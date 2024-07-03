@@ -1,5 +1,7 @@
 package com.adil.server.dto;
 
+import com.adil.server.entity.enums.RequestStatus;
+import com.adil.server.entity.enums.RequestType;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -10,9 +12,9 @@ import java.time.LocalDateTime;
 @Builder
 public class CoachingRequestDTO {
     private Long id;
-    private String type;
+    private RequestType type;
     private LocalDateTime requestDateTime;
-    private String status;
+    private RequestStatus status;
     private Long userId;
     private Long serviceId;
 }

@@ -95,32 +95,56 @@ public class DataLoader implements CommandLineRunner {
                         .build()
         );
 
-        bookRepository.saveAll(books);
+        for (Book book : books) {
+            Optional<Book> existingBook = bookRepository.findByTitle(book.getTitle());
+            if (existingBook.isEmpty()) {
+                bookRepository.save(book);
+            } else {
+                System.out.println("Book with title " + book.getTitle() + " already exists.");
+            }
+        }
     }
     private void loadServices() {
         List<Service> services = Arrays.asList(
                 Service.builder()
-                        .type("Personal Training")
-                        .description("One-on-one personalized training sessions.")
+                        .type("La perte de poids")
+                        .description("Séances d'entraînement personnalisées en tête-à-tête pour atteindre vos objectifs de perte de poids. Nous utilisons une approche combinée de cardio, de musculation et de conseils nutritionnels pour vous aider à perdre du poids de manière saine et durable.")
                         .image("service1.jpg")
                         .build(),
                 Service.builder()
-                        .type("Group Fitness Classes")
-                        .description("High-energy group fitness classes for all fitness levels.")
+                        .type("Le Pilates")
+                        .description("Cours de Pilates énergiques en groupe, adaptés à tous les niveaux de condition physique. Ces séances vous aideront à améliorer votre posture, votre flexibilité et votre force, tout en réduisant le stress et les tensions corporelles.")
                         .image("service2.jpg")
                         .build(),
                 Service.builder()
-                        .type("Nutrition Counseling")
-                        .description("Customized nutrition plans and counseling sessions.")
+                        .type("La remise en forme")
+                        .description("Plans de nutrition personnalisés et séances de conseil pour retrouver la forme. Nous offrons des programmes sur mesure pour vous aider à adopter un mode de vie plus sain, améliorer votre endurance et atteindre vos objectifs de fitness.")
                         .image("service3.jpg")
                         .build(),
                 Service.builder()
-                        .type("Yoga and Meditation")
-                        .description("Relaxing yoga sessions and guided meditation practices.")
+                        .type("Le renforcement musculaire")
+                        .description("Programmes de musculation pour développer et tonifier vos muscles. Nos entraîneurs expérimentés vous guideront à travers des exercices ciblés pour augmenter votre force, votre endurance et votre masse musculaire.")
                         .image("service4.jpg")
+                        .build(),
+                Service.builder()
+                        .type("La gym douce")
+                        .description("Séances de gym douce pour améliorer votre souplesse et votre bien-être général. Idéal pour les personnes cherchant à se détendre tout en faisant de l'exercice, ces cours combinent des mouvements doux avec des techniques de relaxation.")
+                        .image("service5.jpg")
+                        .build(),
+                Service.builder()
+                        .type("La boxe")
+                        .description("Entraînements de boxe pour améliorer votre condition physique et votre endurance. Nos sessions de boxe combinent des exercices cardiovasculaires intenses avec des techniques de boxe pour brûler des calories, renforcer votre corps et améliorer votre agilité.")
+                        .image("service6.jpg")
                         .build()
         );
 
-        serviceRepository.saveAll(services);
+        for (Service service : services) {
+            Optional<Service> existingService = serviceRepository.findByType(service.getType());
+            if (existingService.isEmpty()) {
+                serviceRepository.save(service);
+            } else {
+                System.out.println("Service with type " + service.getType() + " already exists.");
+            }
+        }
     }
 }

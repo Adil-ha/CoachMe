@@ -19,7 +19,7 @@ public class Service {
     @Column(name = "S_type", nullable = false, unique = true)
     private String type;
 
-    @Column(name = "S_description", nullable = false)
+    @Column(length = 10000, name = "S_description", nullable = false)
     private String description;
 
     @Column(name = "S_image")
