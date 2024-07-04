@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ServiceDTO {
+public class PerformanceDTO {
     private Long id;
     private String type;
     private String description;

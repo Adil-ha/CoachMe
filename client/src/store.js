@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./features/LoginSlice";
-import serviceReducer from "./features/ServiceSlice";
+import performanceReducer from "./features/PerformanceSlice";
+import coachingCoachingReducer from "./features/RequestCoachingSlice";
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
-    services: serviceReducer,
+    performances: performanceReducer,
+    coachingRequests: coachingCoachingReducer,
   },
 });
 export default store;

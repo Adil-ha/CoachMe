@@ -16,5 +16,5 @@ public class CoachingRequestDTO {
     private LocalDateTime requestDateTime;
     private RequestStatus status;
     private Long userId;
-    private Long serviceId;
+    private Long performanceId;
 }

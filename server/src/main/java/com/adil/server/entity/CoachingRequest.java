@@ -36,6 +36,6 @@ public class CoachingRequest {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "S_idService", nullable = false)
-    private Service service;
+    @JoinColumn(name = "P_idPerformance", nullable = false)
+    private Performance performance;
 }

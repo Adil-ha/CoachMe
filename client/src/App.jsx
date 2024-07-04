@@ -24,12 +24,16 @@ function App() {
             <Link className="navbar-brand" to="/">coachMe</Link>
             <div className="collapse navbar-collapse justify-content-end" id="navbarColor01">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/books">eBoutique</NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/requestCoaching">Formulaire de Coaching</NavLink>
-                </li>
+                {isLoggedIn && (
+                  <>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/books">eBoutique</NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/requestCoaching">Formulaire de Coaching</NavLink>
+                    </li>
+                  </>
+                )}
               </ul>
               <div className="navbar-text me-3 text-warning">
                 {isLoggedIn && currentUser ? `Bienvenue, ${currentUser.name}` : ''}
@@ -49,11 +53,14 @@ function App() {
           </div>
         </nav>
       </header>
-      <main>
+      <main className="max-vh-90">
         <Outlet />
       </main>
+      <footer className="footer bg-dark text-light text-center py-3">
+        © {new Date().getFullYear()} coachMe - Tous droits réservés
+      </footer>
     </>
   )
 }
 
-export default App
+export default App;

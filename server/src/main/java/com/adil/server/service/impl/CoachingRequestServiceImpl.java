@@ -5,10 +5,12 @@ import com.adil.server.entity.CoachingRequest;
 import com.adil.server.entity.enums.RequestStatus;
 import com.adil.server.mapper.CoachingRequestMapper;
 import com.adil.server.repository.CoachingRequestRepository;
+
 import com.adil.server.service.CoachingRequestService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,9 +22,9 @@ public class CoachingRequestServiceImpl implements CoachingRequestService {
 
     @Override
     public CoachingRequestDTO createCoachingRequest(CoachingRequestDTO coachingRequestDTO) {
-        System.out.println("je suis la ");
         CoachingRequest coachingRequest = coachingRequestMapper.toEntity(coachingRequestDTO);
-        System.out.println("je suis encore la ");
+        coachingRequest.setStatus(RequestStatus.PENDING);
+        coachingRequest.setRequestDateTime(LocalDateTime.now());
         CoachingRequest savedCoachingRequest = coachingRequestRepository.save(coachingRequest);
         return coachingRequestMapper.toDto(savedCoachingRequest);
     }

@@ -9,19 +9,19 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "T_Service")
-public class Service {
+@Table(name = "T_Performance")
+public class Performance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "S_idService")
+    @Column(name = "P_idPerformance")
     private Long id;
 
-    @Column(name = "S_type", nullable = false, unique = true)
+    @Column(name = "P_type", nullable = false, unique = true)
     private String type;
 
-    @Column(length = 10000, name = "S_description", nullable = false)
+    @Column(length = 10000, name = "P_description", nullable = false)
     private String description;
 
-    @Column(name = "S_image")
+    @Column(name = "P_image")
     private String image;
 }

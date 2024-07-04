@@ -1,11 +1,13 @@
 package com.adil.server;
 
 import com.adil.server.entity.Book;
-import com.adil.server.entity.Service;
+import com.adil.server.entity.Performance;
+
 import com.adil.server.entity.User;
 import com.adil.server.entity.enums.UserRole;
 import com.adil.server.repository.BookRepository;
-import com.adil.server.repository.ServiceRepository;
+import com.adil.server.repository.PerformanceRepository;
+
 import com.adil.server.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -22,7 +24,7 @@ import java.util.Optional;
 public class DataLoader implements CommandLineRunner {
     private final UserRepository userRepository;
     private final BookRepository bookRepository;
-    private final ServiceRepository serviceRepository;
+    private final PerformanceRepository performanceRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     @Override
     public void run(String... args) throws Exception {
@@ -105,45 +107,45 @@ public class DataLoader implements CommandLineRunner {
         }
     }
     private void loadServices() {
-        List<Service> services = Arrays.asList(
-                Service.builder()
+        List<Performance> performances = Arrays.asList(
+                Performance.builder()
                         .type("La perte de poids")
                         .description("Séances d'entraînement personnalisées en tête-à-tête pour atteindre vos objectifs de perte de poids. Nous utilisons une approche combinée de cardio, de musculation et de conseils nutritionnels pour vous aider à perdre du poids de manière saine et durable.")
                         .image("service1.jpg")
                         .build(),
-                Service.builder()
+                Performance.builder()
                         .type("Le Pilates")
                         .description("Cours de Pilates énergiques en groupe, adaptés à tous les niveaux de condition physique. Ces séances vous aideront à améliorer votre posture, votre flexibilité et votre force, tout en réduisant le stress et les tensions corporelles.")
                         .image("service2.jpg")
                         .build(),
-                Service.builder()
+                Performance.builder()
                         .type("La remise en forme")
                         .description("Plans de nutrition personnalisés et séances de conseil pour retrouver la forme. Nous offrons des programmes sur mesure pour vous aider à adopter un mode de vie plus sain, améliorer votre endurance et atteindre vos objectifs de fitness.")
                         .image("service3.jpg")
                         .build(),
-                Service.builder()
+                Performance.builder()
                         .type("Le renforcement musculaire")
                         .description("Programmes de musculation pour développer et tonifier vos muscles. Nos entraîneurs expérimentés vous guideront à travers des exercices ciblés pour augmenter votre force, votre endurance et votre masse musculaire.")
                         .image("service4.jpg")
                         .build(),
-                Service.builder()
+                Performance.builder()
                         .type("La gym douce")
                         .description("Séances de gym douce pour améliorer votre souplesse et votre bien-être général. Idéal pour les personnes cherchant à se détendre tout en faisant de l'exercice, ces cours combinent des mouvements doux avec des techniques de relaxation.")
                         .image("service5.jpg")
                         .build(),
-                Service.builder()
+                Performance.builder()
                         .type("La boxe")
                         .description("Entraînements de boxe pour améliorer votre condition physique et votre endurance. Nos sessions de boxe combinent des exercices cardiovasculaires intenses avec des techniques de boxe pour brûler des calories, renforcer votre corps et améliorer votre agilité.")
                         .image("service6.jpg")
                         .build()
         );
 
-        for (Service service : services) {
-            Optional<Service> existingService = serviceRepository.findByType(service.getType());
-            if (existingService.isEmpty()) {
-                serviceRepository.save(service);
+        for (Performance performance : performances) {
+            Optional<Performance> existingPerformance = performanceRepository.findByType(performance.getType());
+            if (existingPerformance.isEmpty()) {
+                performanceRepository.save(performance);
             } else {
-                System.out.println("Service with type " + service.getType() + " already exists.");
+                System.out.println("Performance with type " + performance.getType() + " already exists.");
             }
         }
     }

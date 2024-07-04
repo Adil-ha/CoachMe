@@ -50,7 +50,7 @@ public class SecurityConfiguration {
                                                 .requestMatchers(POST,"/register").permitAll()
                                                 .requestMatchers(POST,"/login").permitAll()
                                                 .requestMatchers(GET,"/books/**").permitAll()
-                                                .requestMatchers(GET,"/services").permitAll()
+                                                .requestMatchers(GET,"/performances").permitAll()
                                                 .anyRequest().authenticated()
                         )
                         .sessionManagement(httpSecuritySessionManagementConfigurer ->

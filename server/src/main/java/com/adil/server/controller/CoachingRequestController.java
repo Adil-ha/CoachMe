@@ -1,6 +1,7 @@
 package com.adil.server.controller;
 
 import com.adil.server.dto.CoachingRequestDTO;
+import com.adil.server.dto.ReponseMessage;
 import com.adil.server.entity.enums.RequestStatus;
 import com.adil.server.service.CoachingRequestService;
 import lombok.AllArgsConstructor;
@@ -18,11 +19,14 @@ public class CoachingRequestController {
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping
-    public ResponseEntity<CoachingRequestDTO> createCoachingRequest(@RequestBody CoachingRequestDTO coachingRequestDTO) {
+    public ResponseEntity<ReponseMessage> createCoachingRequest(@RequestBody CoachingRequestDTO coachingRequestDTO) {
         CoachingRequestDTO createdRequest = coachingRequestService.createCoachingRequest(coachingRequestDTO);
-        return ResponseEntity.ok(createdRequest);
+        ReponseMessage response = ReponseMessage.builder()
+                .message("Votre demande de coaching a été créée avec succès!")
+                .data(createdRequest)
+                .build();
+        return ResponseEntity.ok(response);
     }
-
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<CoachingRequestDTO> getCoachingRequestById(@PathVariable Long id) {
