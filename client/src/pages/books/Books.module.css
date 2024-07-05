@@ -1,0 +1,6 @@
+.book-image {
+    margin: 0 auto;
+    width: 60%;
+    height: 250px;
+    /* object-fit: cover; */
+  }

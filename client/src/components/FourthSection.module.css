@@ -1,0 +1,98 @@
+/* src/components/FourthSection/FourthSection.module.css */
+.featuredSection {
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .bookCard {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+    max-width: 70%;
+    text-align: left;
+  }
+  
+  .bookImage {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 1rem;
+  }
+  
+  .bookDetails {
+    padding: 1rem;
+    flex: 1;
+  }
+  
+  .bookTitle {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .bookAuthor,
+  .bookPrice {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .bookDescription {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #666;
+  }
+  
+  .bookButton {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .bookButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .loginMessage {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    color: #333;
+  }
+  
+  .loginMessage a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .loginMessage a:hover {
+    text-decoration: underline;
+  }
+  
