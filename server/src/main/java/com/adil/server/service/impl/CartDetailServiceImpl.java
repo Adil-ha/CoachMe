@@ -4,7 +4,7 @@ import com.adil.server.dto.CartDetailDTO;
 import com.adil.server.entity.Book;
 import com.adil.server.entity.Cart;
 import com.adil.server.entity.CartDetail;
-import com.adil.server.mapper.CartDetailMapper;
+import com.adil.server.mapper.CartDetailMapperr;
 import com.adil.server.repository.BookRepository;
 import com.adil.server.repository.CartDetailRepository;
 import com.adil.server.repository.CartRepository;
@@ -18,7 +18,7 @@ public class CartDetailServiceImpl implements CartDetailService {
     private final CartDetailRepository cartDetailRepository;
     private final CartRepository cartRepository;
     private final BookRepository bookRepository;
-    private final CartDetailMapper cartDetailMapper;
+    private final CartDetailMapperr cartDetailMapperr;
 
     @Override
     public CartDetailDTO addCartDetail(Long cartId, Long bookId, int quantity) {
@@ -35,7 +35,7 @@ public class CartDetailServiceImpl implements CartDetailService {
                 .build();
 
         CartDetail savedCartDetail = cartDetailRepository.save(cartDetail);
-        return cartDetailMapper.toDto(savedCartDetail);
+        return cartDetailMapperr.toDto(savedCartDetail);
     }
 
     @Override
@@ -54,6 +54,6 @@ public class CartDetailServiceImpl implements CartDetailService {
         cartDetail.setQuantity(quantity);
 
         CartDetail updatedCartDetail = cartDetailRepository.save(cartDetail);
-        return cartDetailMapper.toDto(updatedCartDetail);
+        return cartDetailMapperr.toDto(updatedCartDetail);
     }
 }

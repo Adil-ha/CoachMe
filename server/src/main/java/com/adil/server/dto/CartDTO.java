@@ -1,6 +1,10 @@
 package com.adil.server.dto;
 
+
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -11,4 +15,5 @@ public class CartDTO {
     private Long id;
     private Long userId;
     private float totalAmount;
+    private List<CartDetailDTO> cartDetailDTOList= new ArrayList<>();
 }

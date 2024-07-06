@@ -37,7 +37,7 @@ const FourthSection = () => {
               <p className={styles.bookAuthor}><strong>Auteur :</strong> {featuredBook.author}</p>
               <p className={styles.bookPrice}><strong>Prix :</strong> {featuredBook.price} €</p>
               <p className={styles.bookDescription}>{featuredBook.description}</p>
-              <Link to={`/books/${featuredBook.id}`} className={styles.bookButton}>Commander</Link>
+              <Link to={`/booksDetail/${featuredBook.id}`} className={styles.bookButton}>Commander</Link>
             </div>
           </div>
         ) : (

@@ -26,4 +26,13 @@ public class CartDetail {
     @ManyToOne
     @JoinColumn(name = "B_idBook", nullable = false)
     private Book book;
+
+    @Override
+    public String toString() {
+        return "CartDetail{" +
+                "id=" + id +
+                ", quantity=" + quantity +
+                ", bookId=" + (book != null ? book.getId() : "null") +
+                '}';
+    }
 }

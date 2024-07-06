@@ -33,11 +33,10 @@
 }
 
 .serviceCard img {
-    margin: 0 auto;
-    max-width: 1000px;
-    height: 400px;
+    width: 100%; /* Utiliser 100% de la largeur du conteneur parent */
+    max-height: 400px; /* Limiter la hauteur pour éviter le débordement */
     border-radius: 8px;
-    object-fit: cover; /* Pour s'assurer que l'image reste dans les dimensions de l'élément parent */
+    object-fit: cover; /* S'assurer que l'image reste dans les dimensions de l'élément parent */
 }
 
 /* Styling for the slider dots */
@@ -48,4 +47,11 @@
 
 .slick-dots li.slick-active button:before {
     color: #007bff; /* Color for active dot */
+}
+
+
+@media (max-width: 768px) {
+    .serviceCard p {
+        font-size: 1.2rem; /* Taille de police plus grande pour les écrans de bureau */
+    }
 }

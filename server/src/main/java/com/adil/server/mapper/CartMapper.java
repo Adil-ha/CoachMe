@@ -9,6 +9,7 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface CartMapper {
+
     @Mapping(source = "user.id", target = "userId")
     CartDTO toDto(Cart cart);
 
@@ -17,9 +18,11 @@ public interface CartMapper {
 
     @AfterMapping
     default void calculateTotalAmount(Cart cart, @MappingTarget CartDTO cartDTO) {
-        double totalAmount = cart.getCartDetails().stream()
+        System.out.println("je suis la ");
+        float totalAmount = (float) cart.getCartDetails().stream()
                 .mapToDouble(cartDetail -> cartDetail.getQuantity() * cartDetail.getBook().getPrice())
                 .sum();
-        cartDTO.setTotalAmount((float) totalAmount);
+        cartDTO.setTotalAmount(totalAmount);
     }
+
 }

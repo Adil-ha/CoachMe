@@ -3,6 +3,7 @@ package com.adil.server.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,6 +23,15 @@ public class Cart {
     @JoinColumn(name = "U_idUser", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "cart" , cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartDetail> cartDetails;
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartDetail> cartDetails = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "id=" + id +
+                ", user=" + user +
+                ", cartDetails=" + cartDetails +
+                '}';
+    }
 }

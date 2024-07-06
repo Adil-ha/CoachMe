@@ -1,0 +1,37 @@
+.bookCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bookImage {
+    width: 75%;
+    height: 300px;
+    margin: 0 auto;
+    /* object-fit: cover; */
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .card-text {
+    margin-bottom: 1rem;
+  }
+  
+  .btn-primary {
+    align-self: center;
+  }
+  

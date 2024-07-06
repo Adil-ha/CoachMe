@@ -1,6 +1,7 @@
 package com.adil.server.controller;
 
 import com.adil.server.dto.CartDTO;
+import com.adil.server.dto.CartDetailDTO;
 import com.adil.server.service.CartService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +29,9 @@ public class CartController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
-    @PostMapping("/{cartId}/books/{bookId}")
-    public ResponseEntity<Void> addBookToCart(@PathVariable Long cartId, @PathVariable Long bookId, @RequestParam int quantity) {
-        cartService.addBookToCart(cartId, bookId, quantity);
+    @PostMapping("/{cartId}/books")
+    public ResponseEntity<Void> addBookToCart(@PathVariable Long cartId, @RequestBody CartDetailDTO cartDetailDTO) {
+        cartService.addBookToCart(cartId, cartDetailDTO);
         return ResponseEntity.noContent().build();
     }
 
@@ -42,9 +43,11 @@ public class CartController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
-    @GetMapping("/{cartId}/total")
-    public ResponseEntity<Double> calculateTotalAmount(@PathVariable Long cartId) {
-        double totalAmount = cartService.calculateTotalAmount(cartId);
-        return ResponseEntity.ok(totalAmount);
+    @DeleteMapping("/{cartId}")
+    public ResponseEntity<Void> clearCart(@PathVariable Long cartId) {
+        cartService.clearCart(cartId);
+        return ResponseEntity.noContent().build();
     }
+
+
 }
