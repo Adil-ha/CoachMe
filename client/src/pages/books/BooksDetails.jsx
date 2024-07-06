@@ -87,7 +87,7 @@ const BooksDetails = () => {
         <div className="col-md-6">
           <h2>{book.title}</h2>
           <p><strong>Auteur :</strong> {book.author}</p>
-          <p><strong>Prix :</strong> {book.price} €</p>
+          <p className="h3"><strong>Prix :</strong> {book.price} €</p>
           <p>{book.description}</p>
           <div className="mb-3">
             <label htmlFor="quantity" className="form-label">Quantité :</label>

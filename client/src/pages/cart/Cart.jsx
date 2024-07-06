@@ -26,10 +26,9 @@ const Cart = () => {
 
       const promises = cart.cartDetailDTOList.map((item) => {
         initialQuantityMap[item.bookId] = item.quantity;
-
         return dispatch(fetchBookById(item.bookId))
-          .then((book) => {
-            initialBooksMap[item.bookId] = book;
+          .then((action) => {
+            initialBooksMap[item.bookId] = action.payload; // Utilisation de `action.payload` pour obtenir les détails du livre
           })
           .catch((error) => {
             console.error(`Erreur lors de la récupération des détails du livre pour l'ID ${item.bookId}:`, error);
@@ -93,16 +92,27 @@ const Cart = () => {
       <table className="table">
         <thead>
           <tr>
+            <th>Image</th>
             <th>Titre</th>
             <th>Quantité</th>
             <th>Prix unitaire</th>
-            <th>Total</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {cart.cartDetailDTOList.map((item) => (
             <tr key={item.bookId}>
+              <td>
+                {booksMap[item.bookId]?.image ? (
+                  <img
+                    src={booksMap[item.bookId].image}
+                    alt={booksMap[item.bookId]?.title || 'Image du livre'}
+                    style={{ width: '100px', height: 'auto' }}
+                  />
+                ) : (
+                  'Image non disponible'
+                )}
+              </td>
               <td>{booksMap[item.bookId]?.title || 'Titre inconnu'}</td>
               <td>
                 <input
@@ -114,7 +124,6 @@ const Cart = () => {
                 />
               </td>
               <td>{booksMap[item.bookId]?.price || 0} €</td>
-              <td>{(booksMap[item.bookId]?.price * (quantityMap[item.bookId] || 1)).toFixed(2)} €</td>
               <td>
                 <button className="btn btn-danger btn-sm me-2" onClick={() => handleRemoveFromCart(item.bookId)}>
                   Supprimer
@@ -129,11 +138,15 @@ const Cart = () => {
         <button className="btn btn-warning" onClick={handleClearCart}>
           Vider le panier
         </button>
+        <button className="btn btn-primary ms-2" onClick={() => navigate('/books')}>
+          Continuer mes achats
+        </button>
+        <button className="btn btn-success ms-2" onClick={() => navigate('/order')}>
+          Paiement
+        </button>
       </div>
     </div>
   );
 };
 
 export default Cart;
-
-

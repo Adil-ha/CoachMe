@@ -8,6 +8,7 @@ import Books from "../pages/books/Books";
 import RequestCoaching from "../pages/RequestCoaching";
 import BooksDetails from "../pages/books/BooksDetails";
 import Cart from "../pages/cart/Cart";
+import Order from "../pages/order/Order";
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,11 @@ const router = createBrowserRouter([
             {
                 path: "/cart",
                 element : <Cart/>,
+              
+            },
+            {
+                path: "/order",
+                element : <Order/>,
               
             }
        
