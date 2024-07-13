@@ -49,6 +49,22 @@ export const logout = createAsyncThunk(
   }
 );
 
+export const fetchUserById = createAsyncThunk(
+  "auth/fetchUserById",
+  async (userId, { rejectWithValue }) => {
+    try {
+      const headers = accountService.getToken();
+      const response = await axios.get(`${BASE_API_URL}/user/${userId}`, {
+        headers,
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Fetch user error:", error.response.data);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -77,7 +93,15 @@ const authSlice = createSlice({
         state.user = null;
       })
       .addCase(logout.pending, (state) => {})
-      .addCase(logout.rejected, (state, action) => {});
+      .addCase(logout.rejected, (state, action) => {})
+      .addCase(fetchUserById.fulfilled, (state, action) => {
+        state.user = action.payload;
+      })
+      .addCase(fetchUserById.pending, (state) => {})
+      .addCase(fetchUserById.rejected, (state, action) => {
+        console.error("Fetch user error:", action.payload);
+        alert("Échec de la récupération des informations utilisateur.");
+      });
   },
 });
 

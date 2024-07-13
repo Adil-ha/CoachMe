@@ -1,19 +1,21 @@
 package com.adil.server.controller;
 
 import com.adil.server.dto.AuthenticationDTO;
+import com.adil.server.dto.UserDTO;
 import com.adil.server.entity.User;
 import com.adil.server.security.JwtService;
 import com.adil.server.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @AllArgsConstructor
@@ -47,5 +49,28 @@ public class UserController {
         log.info("deconnexion");
         this.jwtService.logout();
 
+    }
+
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    @GetMapping("/user/{id}")
+//    public UserDTO getUserById(@PathVariable Long id){
+//        Optional<User> userOptional = userService.findById(id);
+//        if(userOptional.isPresent()){
+//            User user = userOptional.get();
+//            return UserDTO.builder()
+//                    .id(user.getId())
+//                    .name(user.getName())
+//                    .email(user.getEmail())
+//                    .phone(user.getPhone())
+//                    .build();
+//        } else {
+//            throw new UsernameNotFoundException("Utilisateur non trouvé avec l'ID: " + id);
+//        }
+//    }
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @GetMapping("/user/{id}")
+    public UserDTO getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
     }
 }

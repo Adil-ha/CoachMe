@@ -1,9 +1,11 @@
 package com.adil.server.service.impl;
 
+import com.adil.server.dto.UserDTO;
 import com.adil.server.entity.User;
 import com.adil.server.entity.enums.UserRole;
 import com.adil.server.exception.DuplicateEmailException;
 import com.adil.server.exception.InvalidEmailException;
+import com.adil.server.mapper.UserMapper;
 import com.adil.server.repository.UserRepository;
 import com.adil.server.service.UserService;
 import lombok.AllArgsConstructor;
@@ -20,6 +22,7 @@ import java.util.regex.Pattern;
 public class UserServiceImpl implements UserDetailsService, UserService{
     private UserRepository userRepository;
     private BCryptPasswordEncoder passwordEncoder;
+    private UserMapper userMapper;
 
     @Override
     public void register(User user){
@@ -51,5 +54,11 @@ public class UserServiceImpl implements UserDetailsService, UserService{
     @Override
     public Optional<User> findById(Long userId) {
         return userRepository.findById(userId);
+    }
+
+    @Override
+    public UserDTO getUserById(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return userMapper.toDto(user);
     }
 }

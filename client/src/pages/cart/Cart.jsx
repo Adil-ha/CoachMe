@@ -134,14 +134,14 @@ const Cart = () => {
         </tbody>
       </table>
       <div className="text-end">
-        <p>Montant total du panier : {cart.totalAmount.toFixed(2)} €</p>
-        <button className="btn btn-warning" onClick={handleClearCart}>
+        <p className="h3">Montant total du panier : {cart.totalAmount.toFixed(2)} €</p>
+        <button className="btn btn-warning mt-3" onClick={handleClearCart}>
           Vider le panier
         </button>
-        <button className="btn btn-primary ms-2" onClick={() => navigate('/books')}>
+        <button className="btn btn-primary ms-2 mt-3" onClick={() => navigate('/books')}>
           Continuer mes achats
         </button>
-        <button className="btn btn-success ms-2" onClick={() => navigate('/order')}>
+        <button className="btn btn-success ms-2 mt-3" onClick={() => navigate('/order')}>
           Paiement
         </button>
       </div>

@@ -38,6 +38,11 @@ function App() {
                     <li className="nav-item">
                       <NavLink className="nav-link" to="/cart">Panier</NavLink>
                     </li>
+                    {currentUser && currentUser.role === 'ROLE_ADMIN' && (
+                      <li className="nav-item">
+                        <NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
+                      </li>
+                    )}
                   </>
                 )}
               </ul>

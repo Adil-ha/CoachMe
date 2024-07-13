@@ -1,6 +1,7 @@
 package com.adil.server.dto;
-
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,4 +13,5 @@ public class UserDTO {
     private String name;
     private String email;
     private String phone;
+    private List<AddressDTO> addressDTOS;
 }

@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
-    host: true, // Assurez-vous que Vite écoute sur toutes les interfaces réseau
+    host: true,
   },
 });
