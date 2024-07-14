@@ -51,22 +51,6 @@ public class UserController {
 
     }
 
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-//    @GetMapping("/user/{id}")
-//    public UserDTO getUserById(@PathVariable Long id){
-//        Optional<User> userOptional = userService.findById(id);
-//        if(userOptional.isPresent()){
-//            User user = userOptional.get();
-//            return UserDTO.builder()
-//                    .id(user.getId())
-//                    .name(user.getName())
-//                    .email(user.getEmail())
-//                    .phone(user.getPhone())
-//                    .build();
-//        } else {
-//            throw new UsernameNotFoundException("Utilisateur non trouvé avec l'ID: " + id);
-//        }
-//    }
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/user/{id}")

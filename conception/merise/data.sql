@@ -1,107 +1,114 @@
-CREATE DATABASE IF NOT EXISTS coachme;
-USE coachme;
+INSERT INTO
+    T_User (
+        U_name,
+        U_email,
+        U_password,
+        U_phone,
+        U_role
+    )
+VALUES (
+        'Admin',
+        'admin@example.com',
+        '$2a$10$9qvXwQ2T4vE0BiUw0v.mqusmjd.yKKhHkE9tov7U.3/4eIDZMVQXK',
+        '1234567890',
+        'ROLE_ADMIN'
+    ),
+    (
+        'Bob Smith',
+        'bob@example.com',
+        '$2a$10$7sH1l7lEmLyIqlWtD24O4Owl7D3lLqnh3aCrT6ZbmVJNmjlvawfBe',
+        '0987654321',
+        'ROLE_USER'
+    );
 
-CREATE TABLE T_User(
-   U_idUser INT AUTO_INCREMENT,
-   U_name VARCHAR(50) NOT NULL,
-   U_email VARCHAR(50) NOT NULL,
-   U_password VARCHAR(50) NOT NULL,
-   U_phone VARCHAR(15),
-   U_role ENUM('ROLE_ADMIN', 'ROLE_USER') NOT NULL,
-   PRIMARY KEY(U_idUser),
-   UNIQUE(U_email)
-);
+INSERT INTO
+    T_Book (
+        B_title,
+        B_author,
+        B_price,
+        B_description,
+        B_image
+    )
+VALUES (
+        'The Encyclopedia of Modern Bodybuilding',
+        'Arnold Schwarzenegger',
+        29.99,
+        'A comprehensive guide to bodybuilding techniques.',
+        'book1.jpg'
+    ),
+    (
+        'Born to Run: A Hidden Tribe, Superathletes, and the Greatest Race the World Has Never Seen',
+        'Christopher McDougall',
+        14.99,
+        'A book about the hidden tribe of the world\'s greatest ultra-runners.',
+        'book2.jpg'
+    ),
+    (
+        'The Inner Game of Tennis: The Classic Guide to the Mental Side of Peak Performance',
+        'W. Timothy Gallwey',
+        12.50,
+        'A guide to mastering the mental aspects of tennis and other sports.',
+        'book3.jpg'
+    ),
+    (
+        'Endure: Mind, Body, and the Curiously Elastic Limits of Human Performance',
+        'Alex Hutchinson',
+        18.75,
+        'An exploration of the science of endurance and human limits.',
+        'book4.jpg'
+    );
 
-CREATE TABLE T_Address(
-   A_idAddress INT AUTO_INCREMENT,
-   A_number VARCHAR(10) NOT NULL,
-   A_street VARCHAR(255) NOT NULL,
-   A_town VARCHAR(100) NOT NULL,
-   A_code VARCHAR(20) NOT NULL,
-   A_country VARCHAR(100) NOT NULL,
-   U_idUser INT NOT NULL,
-   PRIMARY KEY(A_idAddress),
-   FOREIGN KEY(U_idUser) REFERENCES T_User(U_idUser)
-);
+INSERT INTO
+    T_Performance (
+        P_type,
+        P_description,
+        P_image
+    )
+VALUES (
+        'La perte de poids',
+        'Séances d\'entraînement personnalisées en tête-à-tête pour atteindre vos objectifs de perte de poids. Nous utilisons une approche combinée de cardio, de musculation et de conseils nutritionnels pour vous aider à perdre du poids de manière saine et durable.',
+        'service1.jpg'
+    ),
+    (
+        'Le Pilates',
+        'Cours de Pilates énergiques en groupe, adaptés à tous les niveaux de condition physique. Ces séances vous aideront à améliorer votre posture, votre flexibilité et votre force, tout en réduisant le stress et les tensions corporelles.',
+        'service2.jpg'
+    ),
+    (
+        'La remise en forme',
+        'Plans de nutrition personnalisés et séances de conseil pour retrouver la forme. Nous offrons des programmes sur mesure pour vous aider à adopter un mode de vie plus sain, améliorer votre endurance et atteindre vos objectifs de fitness.',
+        'service3.jpg'
+    ),
+    (
+        'Le renforcement musculaire',
+        'Programmes de musculation pour développer et tonifier vos muscles. Nos entraîneurs expérimentés vous guideront à travers des exercices ciblés pour augmenter votre force, votre endurance et votre masse musculaire.',
+        'service4.jpg'
+    ),
+    (
+        'La gym douce',
+        'Séances de gym douce pour améliorer votre souplesse et votre bien-être général. Idéal pour les personnes cherchant à se détendre tout en faisant de l\'exercice, ces cours combinent des mouvements doux avec des techniques de relaxation.',
+        'service5.jpg'
+    ),
+    (
+        'La boxe',
+        'Entraînements de boxe pour améliorer votre condition physique et votre endurance. Nos sessions de boxe combinent des exercices cardiovasculaires intenses avec des techniques de boxe pour brûler des calories, renforcer votre corps et améliorer votre agilité.',
+        'service6.jpg'
+    );
 
-CREATE TABLE T_Jwt(
-   J_idJwt INT AUTO_INCREMENT,
-   J_value VARCHAR(255) NOT NULL,
-   J_is_disable BOOLEAN NOT NULL,
-   J_is_expirate BOOLEAN NOT NULL,
-   U_idUser INT NOT NULL,
-   PRIMARY KEY(J_idJwt),
-   FOREIGN KEY(U_idUser) REFERENCES T_User(U_idUser)
-);
-
-CREATE TABLE T_Service(
-   S_idService INT AUTO_INCREMENT,
-   S_type VARCHAR(50) NOT NULL,
-   S_description VARCHAR(300) NOT NULL,
-   S_image VARCHAR(255),
-   PRIMARY KEY(S_idService),
-   UNIQUE(S_type)
-);
-
-CREATE TABLE T_Coaching_Request(
-   CR_idCoaching_request INT AUTO_INCREMENT,
-   CR_type ENUM('home', 'outdoor', 'videoconference') NOT NULL,
-   CR_requestDateTime DATETIME NOT NULL,
-   CR_status ENUM('pending', 'confirmed', 'canceled') NOT NULL,
-   U_idUser INT NOT NULL,
-   S_idService INT NOT NULL,
-   PRIMARY KEY(CR_idCoaching_request),
-   FOREIGN KEY(U_idUser) REFERENCES T_User(U_idUser),
-   FOREIGN KEY(S_idService) REFERENCES T_Service(S_idService)
-);
-
-CREATE TABLE T_Book(
-   B_idBook INT AUTO_INCREMENT,
-   B_title VARCHAR(100) NOT NULL,
-   B_author VARCHAR(50) NOT NULL,
-   B_price DECIMAL(10,2) NOT NULL,
-   B_description VARCHAR(500) NOT NULL,
-   B_image VARCHAR(255) NOT NULL,
-   PRIMARY KEY(B_idBook),
-   UNIQUE(B_title)
-);
-
-CREATE TABLE T_Order(
-   O_idOrder INT AUTO_INCREMENT,
-   O_orderDate DATETIME NOT NULL,
-   O_status ENUM('pending', 'in progress', 'delivered') NOT NULL,
-   O_tva DECIMAL(5,2) NOT NULL,
-   U_idUser INT NOT NULL,
-   PRIMARY KEY(O_idOrder),
-   FOREIGN KEY(U_idUser) REFERENCES T_User(U_idUser)
-);
-
-CREATE TABLE T_Order_Detail(
-   OD_idOrder_detail INT AUTO_INCREMENT,
-   OD_quantity SMALLINT NOT NULL,
-   B_idBook INT NOT NULL,
-   O_idOrder INT NOT NULL,
-   PRIMARY KEY(OD_idOrder_detail),
-   FOREIGN KEY(B_idBook) REFERENCES T_Book(B_idBook),
-   FOREIGN KEY(O_idOrder) REFERENCES T_Order(O_idOrder)
-);
-
-
-CREATE TABLE T_Cart(
-   C_idCart INT AUTO_INCREMENT,
-   U_idUser INT NOT NULL,
-   PRIMARY KEY(C_idCart),
-   FOREIGN KEY(U_idUser) REFERENCES T_User(U_idUser)
-);
-
-CREATE TABLE T_Cart_Detail(
-   CD_idCart_detail INT AUTO_INCREMENT,
-   CD_quantity SMALLINT NOT NULL,
-   C_idCart INT NOT NULL,
-   B_idBook INT NOT NULL,
-   PRIMARY KEY(CD_idCart_detail),
-   FOREIGN KEY(C_idCart) REFERENCES T_Cart(C_idCart),
-   FOREIGN KEY(B_idBook) REFERENCES T_Book(B_idBook)
-);
-
-
+INSERT INTO
+    T_Address (
+        A_number,
+        A_street,
+        A_town,
+        A_code,
+        A_country,
+        U_idUser
+    )
+VALUES (
+        '123',
+        'Main Street',
+        'Springfield',
+        '12345',
+        'USA',
+        2
+    );
