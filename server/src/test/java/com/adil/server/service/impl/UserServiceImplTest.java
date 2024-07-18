@@ -63,12 +63,15 @@ class UserServiceImplTest {
 
     @Test
     void testRegister_InvalidEmail() {
+        // Arrange
         user.setEmail("invalidEmail");
 
+        // Act
         InvalidEmailException exception = assertThrows(InvalidEmailException.class, () -> {
             userService.register(user);
         });
 
+        //Assert
         assertEquals("Votre est email est invalide", exception.getMessage());
         verify(userRepository, never()).save(user);
     }

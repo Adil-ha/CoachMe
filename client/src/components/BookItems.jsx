@@ -10,7 +10,7 @@ const BookItem = ({ book }) => {
   };
 
   return (
-    <div className="col-md-6 mb-4">
+    <div className="col-lg-4 col-md-6 col-sm-12 mb-4">
       <div className={`card h-100 ${styles.bookCard}`}>
         <img src={book.image} className={`card-img-top ${styles.bookImage}`} alt={book.title} />
         <div className="card-body">

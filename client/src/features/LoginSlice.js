@@ -69,40 +69,47 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: null,
+    error: null,
   },
-  reducers: {},
+  reducers: {
+    clearError(state) {
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload;
-        window.location.href = "/homePage";
       })
       .addCase(login.pending, (state) => {})
       .addCase(login.rejected, (state, action) => {
         state.user = null;
-        console.error("Login error:", action.payload);
-        alert("Échec de la connexion. Veuillez vérifier vos identifiants.");
+        state.error = action.payload;
       })
-
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload;
       })
       .addCase(register.pending, (state) => {})
-      .addCase(register.rejected, (state, action) => {})
+      .addCase(register.rejected, (state, action) => {
+        state.error = action.payload;
+      })
       .addCase(logout.fulfilled, (state, action) => {
         state.user = null;
       })
       .addCase(logout.pending, (state) => {})
-      .addCase(logout.rejected, (state, action) => {})
+      .addCase(logout.rejected, (state, action) => {
+        state.error = action.payload;
+      })
       .addCase(fetchUserById.fulfilled, (state, action) => {
         state.user = action.payload;
       })
       .addCase(fetchUserById.pending, (state) => {})
       .addCase(fetchUserById.rejected, (state, action) => {
-        console.error("Fetch user error:", action.payload);
-        alert("Échec de la récupération des informations utilisateur.");
+        state.error = action.payload;
       });
   },
 });
+
+export const { clearError } = authSlice.actions;
 
 export default authSlice.reducer;

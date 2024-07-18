@@ -1,5 +1,4 @@
 import { useNavigate, Link, NavLink, Outlet } from 'react-router-dom';
-import './App.css';
 import { useDispatch } from 'react-redux';
 import { accountService } from './services/accountService';
 import { logout } from './features/LoginSlice';

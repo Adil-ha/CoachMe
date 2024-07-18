@@ -1,12 +1,31 @@
-import React, { useRef } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { login } from '../../features/LoginSlice';
+import React, { useRef, useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, clearError } from '../../features/LoginSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+
+  const { user, error } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user) {
+      toast.success("Connexion réussie !");
+      navigate("/homePage");
+    }
+    if (error) {
+      toast.error("Échec de la connexion. Veuillez vérifier vos identifiants.");
+    }
+  }, [user, error, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -14,7 +33,7 @@ const Login = () => {
     const password = passwordRef.current.value;
 
     if (!username || !password) {
-      alert('Veuillez remplir tous les champs.');
+      toast.warn('Veuillez remplir tous les champs.');
       return;
     }
 
@@ -71,6 +90,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

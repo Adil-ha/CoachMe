@@ -7,7 +7,7 @@ import { accountService } from '../../services/accountService';
 
 const BooksDetails = () => {
   const { id } = useParams();
-  const navigate = useNavigate(); // Utilisation de useNavigate pour la navigation
+  const navigate = useNavigate(); 
   const dispatch = useDispatch();
   const book = useSelector((state) => state.books.book);
   const cart = useSelector((state) => state.cart.cart);

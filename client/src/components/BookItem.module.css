@@ -1,5 +1,7 @@
 .bookCard {
     display: flex;
+    max-width: 400px;
+    margin: 0 auto;
     flex-direction: column;
     justify-content: space-between;
     background-color: #fff;

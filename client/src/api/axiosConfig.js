@@ -1,8 +1,8 @@
 import axios from "axios";
-import { accountService } from "../services/accountService"; // Assurez-vous que le chemin est correct
+import { accountService } from "../services/accountService";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8090", // Remplacez par l'URL de votre API
+  baseURL: "http://localhost:8090",
   headers: {
     "Content-Type": "application/json",
   },
