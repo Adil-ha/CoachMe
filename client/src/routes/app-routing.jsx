@@ -14,6 +14,10 @@ import { accountService } from "../services/accountService";
 import Dashboard from "../pages/admin/Dashboard";
 import AdminOrderDetail from "../pages/admin/AdminOrderDetail";
 import AdminRequestCoachingDetail from "../pages/admin/AdminRequestCoachingDetail";
+import BookHandler from "../pages/admin/bookHandler/BookHandler";
+import PerformanceHandler from "../pages/admin/performanceHandler/PerformanceHandler";
+import AddBook from "../pages/admin/bookHandler/AddBook";
+import AddPerformance from "../pages/admin/performanceHandler/AddPerformance";
 
 const currentUser = accountService.getCurrentUser(); 
 
@@ -73,7 +77,6 @@ const router = createBrowserRouter([
                 path: "/requestCoaching",
                 element : <RequestCoaching/>,
                 loader : () => authCheck(),
-                
               
             },
             {
@@ -109,6 +112,30 @@ const router = createBrowserRouter([
             {
                 path: "/AdminRequestCoachingDetail/:id",
                 element : <AdminRequestCoachingDetail/>,
+                loader : () => isAdmin(),
+              
+            },
+            {
+                path: "/BookHandler",
+                element : <BookHandler/>,
+                loader : () => isAdmin(),
+              
+            },
+            {
+                path: "/PerformanceHandler",
+                element : <PerformanceHandler/>,
+                loader : () => isAdmin(),
+              
+            },
+            {
+                path: "/AddBook",
+                element : <AddBook/>,
+                loader : () => isAdmin(),
+              
+            },
+            {
+                path: "/AddPerformance",
+                element : <AddPerformance/>,
                 loader : () => isAdmin(),
               
             },

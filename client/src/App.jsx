@@ -1,13 +1,21 @@
+import React from 'react';
 import { useNavigate, Link, NavLink, Outlet } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { accountService } from './services/accountService';
 import { logout } from './features/LoginSlice';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoggedIn = accountService.isLogged();
-  const currentUser = accountService.getCurrentUser(); 
+  const currentUser = accountService.getCurrentUser();
+
 
   const handleLogout = () => {
     dispatch(logout());
@@ -18,50 +26,40 @@ function App() {
   return (
     <>
       <header>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div className="container-fluid">
-            <Link className="navbar-brand" to="/">coachMe</Link>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse justify-content-end" id="navbarColor01">
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <Navbar expand="lg" bg="dark" variant="dark">
+          <Container fluid>
+            <Navbar.Brand as={Link} to="/">coachMe</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
                 {isLoggedIn && (
                   <>
-                    <li className="nav-item">
-                      <NavLink className="nav-link" to="/books">eBoutique</NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink className="nav-link" to="/requestCoaching">Formulaire de Coaching</NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink className="nav-link" to="/cart">Panier</NavLink>
-                    </li>
+                    <Nav.Link as={NavLink} to="/books">eBoutique</Nav.Link>
+                    <Nav.Link as={NavLink} to="/requestCoaching">Formulaire de Coaching</Nav.Link>
+                    <Nav.Link as={NavLink} to="/cart">Panier</Nav.Link>
                     {currentUser && currentUser.role === 'ROLE_ADMIN' && (
-                      <li className="nav-item">
-                        <NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
-                      </li>
+                      <NavDropdown title="Administrateur" id="admin-nav-dropdown">
+                        <NavDropdown.Item as={NavLink} to="/dashboard">Dashboard</NavDropdown.Item>
+                        <NavDropdown.Item as={NavLink} to="/BookHandler">Gestion des livres</NavDropdown.Item>
+                        <NavDropdown.Item as={NavLink} to="/PerformanceHandler">Gestions des prestations</NavDropdown.Item>
+                      </NavDropdown>
                     )}
                   </>
                 )}
-              </ul>
+              </Nav>
               <div className="navbar-text me-3 text-warning">
                 {isLoggedIn && currentUser ? `Bienvenue, ${currentUser.name}` : ''}
               </div>
-              <form className="d-flex">
+              <Nav>
                 {isLoggedIn ? (
-                  <>
-                    <button className="btn btn-primary me-2" onClick={handleLogout}>Déconnexion</button>
-                  </>
+                  <Nav.Link as="button" className="btn btn-primary me-2" onClick={handleLogout}>Déconnexion</Nav.Link>
                 ) : (
-                  <>
-                    <NavLink className="btn btn-warning me-2" to="/login">Login</NavLink>
-                  </>
+                  <Nav.Link as={NavLink} className="btn btn-warning me-2" to="/login">Login</Nav.Link>
                 )}
-              </form>
-            </div>
-          </div>
-        </nav>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
       </header>
       <main className="min-vh-100">
         <Outlet />
