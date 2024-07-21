@@ -11,6 +11,7 @@ const BookHandler = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { books, loading, error } = useSelector((state) => state.books);
+  console.log(books);
 
   useEffect(() => {
     dispatch(fetchAllBooks());

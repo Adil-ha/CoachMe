@@ -9,6 +9,7 @@ const PerformanceHandler = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { performances, loading, error } = useSelector((state) => state.performances);
+  console.log(performances);
 
   useEffect(() => {
     dispatch(fetchAllPerformances());

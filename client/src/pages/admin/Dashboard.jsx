@@ -17,60 +17,56 @@ const Dashboard = () => {
     dispatch(fetchAllCoachingRequests());
   }, [dispatch]);
 
-  const handleOrderStatusChange = (orderId, newStatus) => {
-    dispatch(updateOrderStatus({ orderId, orderStatus: newStatus }))
-      .then(() => {
-        dispatch(fetchAllOrders());
-        toast.success("Le statut de la commande a été mis à jour avec succès !");
-      })
-      .catch((error) => {
-        toast.error("Échec de la mise à jour du statut de la commande.");
-      });
-  };
-
-  const handleCoachingRequestStatusChange = (requestId, newStatus) => {
-    dispatch(updateCoachingRequestStatus({ id: requestId, status: newStatus }))
-      .then(() => {
-        dispatch(fetchAllCoachingRequests());
-        toast.success("Le statut de la demande de coaching a été mis à jour avec succès !");
-      })
-      .catch((error) => {
-        toast.error("Échec de la mise à jour du statut de la demande de coaching.");
-      });
-  };
-
-  const handleDeleteOrder = (orderId) => {
-    const confirmed = window.confirm("Voulez-vous vraiment supprimer cette commande ?");
-    if (confirmed) {
-      dispatch(deleteOrder(orderId))
-        .then(() => {
-          toast.success("La commande a été supprimée avec succès !");
-        })
-        .catch((error) => {
-          toast.error("Échec de la suppression de la commande.");
-        });
+  const handleOrderStatusChange = async (orderId, newStatus) => {
+    try {
+      await dispatch(updateOrderStatus({ orderId, orderStatus: newStatus })).unwrap();
+      dispatch(fetchAllOrders());
+      toast.success("Le statut de la commande a été mis à jour avec succès !");
+    } catch (error) {
+      toast.error("Échec de la mise à jour du statut de la commande.");
     }
   };
 
-  const handleDeleteCoachingRequest = (requestId) => {
+  const handleCoachingRequestStatusChange = async (requestId, newStatus) => {
+    try {
+      await dispatch(updateCoachingRequestStatus({ id: requestId, status: newStatus })).unwrap();
+      dispatch(fetchAllCoachingRequests());
+      toast.success("Le statut de la demande de coaching a été mis à jour avec succès !");
+    } catch (error) {
+      toast.error("Échec de la mise à jour du statut de la demande de coaching.");
+    }
+  };
+
+  const handleDeleteOrder = async (orderId) => {
+    const confirmed = window.confirm("Voulez-vous vraiment supprimer cette commande ?");
+    if (confirmed) {
+      try {
+        await dispatch(deleteOrder(orderId)).unwrap();
+        toast.success("La commande a été supprimée avec succès !");
+      } catch (error) {
+        toast.error("Échec de la suppression de la commande.");
+      }
+    }
+  };
+
+  const handleDeleteCoachingRequest = async (requestId) => {
     const confirmed = window.confirm("Voulez-vous vraiment supprimer cette demande de coaching ?");
     if (confirmed) {
-      dispatch(deleteCoachingRequest(requestId))
-        .then(() => {
-          toast.success("La demande de coaching a été supprimée avec succès !");
-        })
-        .catch((error) => {
-          toast.error("Échec de la suppression de la demande de coaching.");
-        });
+      try {
+        await dispatch(deleteCoachingRequest(requestId)).unwrap();
+        toast.success("La demande de coaching a été supprimée avec succès !");
+      } catch (error) {
+        toast.error("Échec de la suppression de la demande de coaching.");
+      }
     }
   };
 
   const handleOrderViewDetails = (id) => {
-    navigate(`/AdminOrderDetail/${id}`)
+    navigate(`/AdminOrderDetail/${id}`);
   };
 
   const handleRequestViewDetails = (id) => {
-    navigate(`/AdminRequestCoachingDetail/${id}`)
+    navigate(`/AdminRequestCoachingDetail/${id}`);
   };
 
   return (
@@ -107,7 +103,7 @@ const Dashboard = () => {
                 <td>
                   <button
                     className="btn btn-primary btn-sm me-2"
-                    onClick={() => handleOrderViewDetails(order.id, 'order')}
+                    onClick={() => handleOrderViewDetails(order.id)}
                   >
                     <FaEye />
                   </button>
@@ -156,7 +152,7 @@ const Dashboard = () => {
                 <td>
                   <button
                     className="btn btn-primary btn-sm me-2"
-                    onClick={() => handleRequestViewDetails(request.id, 'coaching request')}
+                    onClick={() => handleRequestViewDetails(request.id)}
                   >
                     <FaEye />
                   </button>
@@ -177,4 +173,5 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
 
