@@ -4,7 +4,9 @@ import com.adil.server.dto.OrderDTO;
 import com.adil.server.dto.OrderDetailDTO;
 import com.adil.server.dto.ReponseMessage;
 import com.adil.server.service.OrderService;
+import com.adil.server.service.impl.PaymentService;
 import com.adil.server.wrapper.OrderStatusWrapper;
+import com.stripe.exception.StripeException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,12 +20,17 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
+    private final PaymentService paymentService;
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping
-    public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) {
+    public String createOrder(@RequestBody OrderDTO orderDTO)  {
         OrderDTO createdOrder = orderService.createOrder(orderDTO);
-        return ResponseEntity.ok(createdOrder);
+        try {
+            return paymentService.createPayment(createdOrder);
+        } catch (StripeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")

@@ -17,7 +17,7 @@ const Order = () => {
     street: '',
     town: '',
     code: '',
-    country: 'France', // Set country to France by default
+    country: 'France', 
   });
 
   const [booksMap, setBooksMap] = useState({});
@@ -73,7 +73,7 @@ const Order = () => {
                             .unwrap()
                             .then(() => {
                                 console.log('Tous les livres ont été ajoutés à la commande');
-                                navigate(`/confirmation/${createdOrder.id}`); 
+                                navigate(`${createOrder}`); 
                             })
                             .catch((error) => {
                                 console.error('Erreur lors de l\'ajout des livres à la commande :', error);

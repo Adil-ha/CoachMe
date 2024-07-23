@@ -92,7 +92,7 @@ const router = createBrowserRouter([
               
             },
             {
-                path: "/confirmation/:id",
+                path: "/confirmation",
                 element : <Confirmation/>,
                 loader : () => authCheck(),
               
