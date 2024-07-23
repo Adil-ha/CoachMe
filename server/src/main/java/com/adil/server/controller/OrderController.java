@@ -22,16 +22,14 @@ public class OrderController {
     private final OrderService orderService;
     private final PaymentService paymentService;
 
+
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping
-    public String createOrder(@RequestBody OrderDTO orderDTO)  {
+    public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) {
         OrderDTO createdOrder = orderService.createOrder(orderDTO);
-        try {
-            return paymentService.createPayment(createdOrder);
-        } catch (StripeException e) {
-            throw new RuntimeException(e);
-        }
+        return ResponseEntity.ok(createdOrder);
     }
+
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/{orderId}")
@@ -49,26 +47,20 @@ public class OrderController {
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping("/{orderId}/books")
-    public ResponseEntity<ReponseMessage> addBooksToOrder(@PathVariable Long orderId, @RequestBody List<OrderDetailDTO> orderDetailDTOList) {
+    public String addBooksToOrder(@PathVariable Long orderId, @RequestBody List<OrderDetailDTO> orderDetailDTOList) {
         System.out.println("Order ID: " + orderId);
         System.out.println("Order Detail List: " + orderDetailDTOList);
 
         for (OrderDetailDTO orderDetailDTO : orderDetailDTOList) {
-            System.out.println(orderDetailDTO);
             orderService.addBookToOrder(orderId, orderDetailDTO);
         }
-        ReponseMessage responseMessage = new ReponseMessage("Books added to order successfully", null);
-        return ResponseEntity.ok(responseMessage);
+        try {
+            return paymentService.createPayment(orderDetailDTOList, orderId);
+        } catch (StripeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-
-
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
-    @DeleteMapping("/{orderId}/books/{bookId}")
-    public ResponseEntity<Void> removeBookFromOrder(@PathVariable Long orderId, @PathVariable Long bookId) {
-        orderService.removeBookFromOrder(orderId, bookId);
-        return ResponseEntity.noContent().build();
-    }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     @DeleteMapping("/{orderId}")

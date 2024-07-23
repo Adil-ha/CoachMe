@@ -71,9 +71,9 @@ const Order = () => {
                         console.log('Order Detail List:', orderDetailDTOList);
                         dispatch(addBookToOrder({ orderId: createdOrder.id, orderDetailDTOList }))
                             .unwrap()
-                            .then(() => {
-                                console.log('Tous les livres ont été ajoutés à la commande');
-                                navigate(`${createOrder}`); 
+                            .then((stripUrl) => {
+                                console.log('Tous les livres ont été ajoutés à la commande', stripUrl);
+                                window.location.href = stripUrl; 
                             })
                             .catch((error) => {
                                 console.error('Erreur lors de l\'ajout des livres à la commande :', error);
