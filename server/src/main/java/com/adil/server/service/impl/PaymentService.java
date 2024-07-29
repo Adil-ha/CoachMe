@@ -43,7 +43,7 @@ public class PaymentService {
         // Create a payment session by adding the payment session details
         SessionCreateParams.Builder paramsBuilder = SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl("http://localhost:5173/confirmation?id="+ orderId)
+                .setSuccessUrl("http://localhost:5173/Confirmation?id="+ orderId)
                 .setCancelUrl("http://localhost:5173");
 
         // Add line item with price data including product_data

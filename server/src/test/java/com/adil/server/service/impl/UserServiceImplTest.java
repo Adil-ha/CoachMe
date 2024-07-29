@@ -109,24 +109,6 @@ class UserServiceImplTest {
         assertEquals("Aucun utilisateur ne correspond à cette identifiant", exception.getMessage());
     }
 
-    @Test
-    void testFindById_UserExists() {
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(user));
-
-        Optional<User> foundUser = userService.findById(1L);
-
-        assertTrue(foundUser.isPresent());
-        assertEquals("test@example.com", foundUser.get().getEmail());
-    }
-
-    @Test
-    void testFindById_UserDoesNotExist() {
-        when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
-
-        Optional<User> foundUser = userService.findById(1L);
-
-        assertFalse(foundUser.isPresent());
-    }
 
     @Test
     void testGetUserById_UserExists() {

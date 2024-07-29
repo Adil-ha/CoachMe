@@ -10,12 +10,14 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+// // Import the logo
+// import logo from './logo.jpg'; // Update the path accordingly
+
 function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoggedIn = accountService.isLogged();
   const currentUser = accountService.getCurrentUser();
-
 
   const handleLogout = () => {
     dispatch(logout());
@@ -28,7 +30,15 @@ function App() {
       <header>
         <Navbar expand="lg" bg="dark" variant="dark">
           <Container fluid>
-            <Navbar.Brand as={Link} to="/">coachMe</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/">
+              <img
+                src={"/logo.png"}
+                height="50"
+                width="120"
+                alt="CoachMe Logo"
+                className="d-inline-block align-top"
+              />
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
