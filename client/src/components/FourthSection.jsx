@@ -12,9 +12,11 @@ const FourthSection = () => {
     const error = useSelector((state) => state.books.error);
     const isLoggedIn = accountService.isLogged();
 
-    useEffect(() => {
-        dispatch(fetchBookById(4)); // Fetch the book with ID 4
+    if(isLoggedIn){
+      useEffect(() => {
+        dispatch(fetchBookById(4)); 
       }, [dispatch]);
+    }
 
 
       if (loading) {

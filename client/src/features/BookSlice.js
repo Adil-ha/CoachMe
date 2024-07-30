@@ -9,7 +9,10 @@ export const fetchAllBooks = createAsyncThunk(
   "books/fetchAll",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${BASE_API_URL}/books`);
+      const headers = accountService.getToken();
+      const response = await axios.get(`${BASE_API_URL}/books`,{
+        headers
+      });
       return response.data;
     } catch (error) {
       console.error(
@@ -26,7 +29,10 @@ export const fetchBookById = createAsyncThunk(
   "books/fetchById",
   async (bookId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${BASE_API_URL}/books/${bookId}`);
+      const headers = accountService.getToken();
+      const response = await axios.get(`${BASE_API_URL}/books/${bookId}`,{
+        headers
+      });
       return response.data;
     } catch (error) {
       console.error("Fetch book by ID error:", error.response.data);

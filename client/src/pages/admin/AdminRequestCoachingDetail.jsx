@@ -74,7 +74,7 @@ const AdminRequestCoachingDetail = () => {
             <Alert variant="danger">Erreur lors de la récupération de la performance : {performanceError}</Alert>
           ) : performance ? (
             <div>
-              <p>Titre : {performance.title}</p>
+              <p>Titre : {performance.type}</p>
               <p>Description : {performance.description}</p>
             </div>
           ) : (

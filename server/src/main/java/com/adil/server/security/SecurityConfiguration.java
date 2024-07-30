@@ -49,7 +49,6 @@ public class SecurityConfiguration {
                                         authorize
                                                 .requestMatchers(POST,"/register").permitAll()
                                                 .requestMatchers(POST,"/login").permitAll()
-                                                .requestMatchers(GET,"/books/**").permitAll()
                                                 .requestMatchers(GET,"/performances/**").permitAll()
                                                 .anyRequest().authenticated()
                         )
