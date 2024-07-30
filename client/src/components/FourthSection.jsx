@@ -17,7 +17,7 @@ const FourthSection = () => {
         dispatch(fetchBookById(4)); 
       }, [dispatch]);
     }
-
+ 
 
       if (loading) {
         return <p>Chargement...</p>;
