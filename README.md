@@ -15,47 +15,25 @@ CoachMe is a sports coaching application that offers personalized coaching servi
 
 ## Installation
 
-To run this application locally, follow these steps:
-
-### Backend (Java Spring Boot)
+To run this application locally using Docker Compose, follow these steps:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/coachme.git
-    cd coachme/backend
+    git clone https://github.com/Adil-ha/CoachMe.git
+    cd coachme
     ```
 
-2. Install the dependencies:
+2. Start the application using Docker Compose:
     ```bash
-    mvn install
+    docker-compose up
     ```
 
-3. Run the application:
-    ```bash
-    mvn spring-boot:run
-    ```
-
-### Frontend (React.js)
-
-1. Navigate to the frontend directory:
-    ```bash
-    cd ../frontend
-    ```
-
-2. Install the dependencies:
-    ```bash
-    npm install
-    ```
-
-3. Run the application:
-    ```bash
-    npm start
-    ```
+   This command will build and start both the backend and frontend services.
 
 ## Usage
 
-1. Open your browser and navigate to `http://localhost:3000` to access the frontend.
-2. Use the application to explore the sports coaching services and the bookstore.
+1. Open your browser and navigate to `http://localhost:5173` to access the frontend.
+2. Explore the various sports coaching services and the bookstore available on the platform.
 
 ## Contributing
 
@@ -64,3 +42,4 @@ If you would like to contribute to this project, please fork the repository and 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+

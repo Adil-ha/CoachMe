@@ -8,7 +8,6 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring", uses = AddressMapper.class)
 public interface UserMapper {
-    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
     @Mapping(source = "addresses", target = "addressDTOS")
     UserDTO toDto(User user);

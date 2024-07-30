@@ -194,7 +194,7 @@ const Order = () => {
                 name="country"
                 value={address.country}
                 onChange={handleChange}
-                readOnly // Make the country field read-only
+                readOnly 
               />
             </div>
             <div className="text-end my-3">
