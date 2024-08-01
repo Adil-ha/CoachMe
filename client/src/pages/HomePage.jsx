@@ -3,6 +3,7 @@ import FourthSection from "../components/FourthSection"
 import SecondSection from "../components/SecondSection"
 import ThirdSection from "../components/ThirdSection"
 
+
 const HomePage = () => {
     return(
         <>

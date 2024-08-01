@@ -5,8 +5,11 @@ import { fetchAllCoachingRequests, updateCoachingRequestStatus, deleteCoachingRe
 import { FaTrash, FaEye } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { accountService } from "../../services/accountService";
 
 const Dashboard = () => {
+  const currentUser = accountService.getCurrentUser();
+  console.log(currentUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const orders = useSelector((state) => state.order.orders);
