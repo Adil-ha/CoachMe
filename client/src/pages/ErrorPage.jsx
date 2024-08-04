@@ -8,7 +8,7 @@ const ErrorPage = () => {
       className="d-flex flex-column justify-content-center align-items-center"
       style={{ height: "100vh", width: "100vw" }}
     >
-      <h3>Error {error.status}!</h3>
+      <h3>Erroor {error.status}!</h3>
       <p>{error.data}</p>
     </div>
   );

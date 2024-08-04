@@ -38,7 +38,7 @@ public class OrderController {
         return ResponseEntity.ok(order);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping
     public ResponseEntity<List<OrderDTO>> getAllOrders() {
         List<OrderDTO> orders = orderService.getAllOrders();
@@ -48,8 +48,6 @@ public class OrderController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping("/{orderId}/books")
     public String addBooksToOrder(@PathVariable Long orderId, @RequestBody List<OrderDetailDTO> orderDetailDTOList) {
-        System.out.println("Order ID: " + orderId);
-        System.out.println("Order Detail List: " + orderDetailDTOList);
 
         for (OrderDetailDTO orderDetailDTO : orderDetailDTOList) {
             orderService.addBookToOrder(orderId, orderDetailDTO);

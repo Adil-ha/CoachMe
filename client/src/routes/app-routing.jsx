@@ -19,8 +19,6 @@ import PerformanceHandler from "../pages/admin/performanceHandler/PerformanceHan
 import AddBook from "../pages/admin/bookHandler/AddBook";
 import AddPerformance from "../pages/admin/performanceHandler/AddPerformance";
 
-const currentUser = accountService.getCurrentUser();
-
 const authCheck = () => {
     if (accountService.isLogged()) {
       return true;
@@ -29,14 +27,17 @@ const authCheck = () => {
     }
 }
 
+
 const isAdmin = () => {
-    if(currentUser.role == "ROLE_ADMIN"){
-        console.log(currentUser);
-        return true;
-    }else {
-        return redirect("/");
+    const currentUser = accountService.getCurrentUser(); 
+
+    if (currentUser && currentUser.role === "ROLE_ADMIN") {
+      console.log(currentUser);
+      return true;
+    } else {
+      return redirect("/");
     }
-}
+  };
 
 const router = createBrowserRouter([
     {

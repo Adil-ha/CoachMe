@@ -48,7 +48,6 @@ public class UserController {
     public void logout(){
         log.info("deconnexion");
         this.jwtService.logout();
-
     }
 
 

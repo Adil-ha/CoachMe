@@ -10,8 +10,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-// // Import the logo
-// import logo from './logo.jpg'; // Update the path accordingly
 
 function App() {
   const navigate = useNavigate();
